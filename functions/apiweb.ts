@@ -27,7 +27,3 @@ app.get("/update", async (req, res) => {
   }
 });
 
-// Démarrer le serveur
-app.listen(3000, () => {
-  console.log("Le serveur est en cours d'exécution sur le port 3000.");
-});

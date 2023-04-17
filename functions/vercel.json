@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "tuto",
+    "name": "UpdateBDD",
     "builds": [
       { "src": "server.js", "use": "@vercel/node" }
     ],
