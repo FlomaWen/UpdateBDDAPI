@@ -1,16 +1,20 @@
+# Utilisez une image existante en tant que point de départ
 FROM node:14
 
-# Install required ODBC libraries
-RUN apt-get update && apt-get install -y unixodbc unixodbc-dev
+# Définit le répertoire de travail dans le conteneur
+WORKDIR /usr/src/app
 
-# Set the working directory
-WORKDIR /app
+# Copie les fichiers de package.json et package-lock.json dans le conteneur
+COPY package*.json ./
 
-# Copy application files
-COPY . .
-
-# Install dependencies
+# Installe les dépendances
 RUN npm install
 
-# Set the command to start the application
-CMD ["npm", "start"]
+# Copie le reste des fichiers dans le conteneur
+COPY . .
+
+# Expose le port 3000
+EXPOSE 3000
+
+# Démarre l'application
+CMD [ "npm", "start" ]
