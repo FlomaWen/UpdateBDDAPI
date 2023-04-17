@@ -2,16 +2,23 @@
     "version": 2,
     "name": "tuto",
     "builds": [
-      { "src": "package.json", "use": "@vercel/node" },
-      {
-        "use": "@vercel/should-serve",
-        "config": {
-          "packages": ["unixodbc", "unixodbc-dev"]
-        }
-      }
+      { "src": "server.js", "use": "@vercel/node" }
     ],
     "routes": [
       { "src": "/(.*)", "dest": "/server.js" }
-    ]
+    ],
+    "build": {
+      "env": {
+        "DEBIAN_FRONTEND": "noninteractive",
+        "ODBCINSTINI": "/etc/odbcinst.ini",
+        "ODBCSYSINI": "/etc/odbc.ini"
+      },
+      "scripts": {
+        "install-odbc": "./odbc-install.sh"
+      },
+      "commands": [
+        { "command": "bash", "src": "odbc-install.sh", "use": "@vercel/now-execute" }
+      ]
+    }
   }
   
