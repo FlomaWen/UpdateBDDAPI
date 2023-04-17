@@ -2,9 +2,11 @@
     "version": 2,
     "name": "tuto",
     "builds": [
-      { "src": "server.js", "use": "@vercel/node" }
+      { "src": "server.js", "use": "@vercel/node" },
+      { "src": "docker.dockerfile", "use": "@vercel/docker" }
     ],
     "routes": [
       { "src": "/(.*)", "dest": "/server.js" }
     ]
-}
+  }
+  
