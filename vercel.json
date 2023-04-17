@@ -2,23 +2,18 @@
     "version": 2,
     "name": "tuto",
     "builds": [
+      { "src": "server.js", "use": "@vercel/node" },
       {
-        "src": "server.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "server.js",
-        "use": "@vercel/should-serve",
+        "use": "@vercel/static-build",
         "config": {
+          "maxLambdaSize": "15mb",
+          "zeroConfig": true,
+          "debug": true,
           "packages": ["unixodbc", "unixodbc-dev"]
         }
       }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/server.js"
-      }
+      { "src": "/(.*)", "dest": "/server.js" }
     ]
   }
-  
