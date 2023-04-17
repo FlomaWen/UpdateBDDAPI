@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   });
 
   
-  app.get('/update', async (req, res) => {
+  app.use(async (req, res) => {
     try {
       const connectionString = "DRIVER={HFSQL};ANA=D:\\Sirius\\Donnees\\AGRI\\Version\\Sirius.Wd7\\Sirius.wdd;REP=D:\\Sirius\\Donnees\\AGRI\\GrpA\\Agri001\\";
       const connection = await odbc.connect(connectionString);
