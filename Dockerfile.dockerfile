@@ -1,17 +1,12 @@
 FROM node:14
 
-# Créer un répertoire de travail
-WORKDIR /usr/src/app
+RUN apt-get update && \
+    apt-get install -y unixodbc unixodbc-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copier les fichiers de l'application
+WORKDIR /app
 COPY package*.json ./
+RUN npm install
 COPY . .
 
-# Installer les dépendances
-RUN npm install
-
-# Exposer le port utilisé par l'application
-EXPOSE 3000
-
-# Lancer l'application
 CMD ["npm", "start"]
